@@ -1,0 +1,70 @@
+{
+  "description": "mass update - desc",
+  "highRiskStatisticMethod": "COUNT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "keepResourcesOnFailure": true,
+  "node": "TMG_AS_ROOT",
+  "owner": "i",
+  "priority": "22",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "STATIC_VALUE",
+  "statisticPeriod": "ALL",
+  "taskType": "SH",
+  "weight": "22",
+  "processingCommand": {
+    "script": "sleep 2\nuname -a\nid\nps -ef\n\necho okok\n\nif [ ${timesRestarted} -eq 1 ] ; then\nexit 5\nfi\n"
+  },
+  "actions": 
+  [
+    {
+      "processingActionType": "HOLD",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "PROCESSING_COMPLETED",
+      "processingCommand": {
+        "actionTargetType": "SELF",
+        "keepForcedStatus": true,
+        "restartType": "RESTART_FROM_BEGINNING"
+      }
+    },
+    {
+      "processingActionType": "PROCESSING_ADD_NOTE",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "PROCESSING_COMPLETED",
+      "processingCommand": {
+        "actionTargetType": "SELF",
+        "keepForcedStatus": true,
+        "note": "${objectLink}\n\nby tmg",
+        "noteType": "INFO",
+        "operator": "",
+        "restartType": "RESTART_FROM_BEGINNING"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "RESOURCE",
+      "name": "TMG_NOOF_FILES_CARD",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "resource": "TMG_NOOF_FILES_CARD",
+      "resourcePermits": "2",
+      "resourceType": "STOCK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH"
+    },
+    {
+      "dependencyType": "RESOURCE",
+      "lockState": "SHARED",
+      "name": "TMG_LOCK_01",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "resource": "TMG_LOCK_01",
+      "resourceType": "LOCK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH"
+    }
+  ]
+}

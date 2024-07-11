@@ -1,0 +1,18 @@
+{
+  "highRiskStatisticMethod": "COUNT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "ROX",
+  "owner": "Roxanne",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "MEDIAN",
+  "statisticPeriod": "ALL",
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "sleep 5"
+  }
+}

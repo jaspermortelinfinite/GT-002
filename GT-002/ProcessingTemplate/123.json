@@ -1,0 +1,35 @@
+{
+  "description": "123123123123dsdfsdfsdvxcvxcvxc",
+  "endpointType": "SSH",
+  "highRiskStatisticMethod": "COUNT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "TMG_AS_ROOT",
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "MEDIAN",
+  "statisticPeriod": "ALL",
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "\n\ncat /home/tomasz.gorzkowski/anow/log/TMG_PEOPLESOFT.agent.log"
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "TEST_WORKFLOW_ITEM_DEPENDENCY.simple_echo",
+      "processingStatus": "FAILED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "TEST_WORKFLOW_ITEM_DEPENDENCY",
+      "workflowTemplateItem": "simple_echo"
+    }
+  ]
+}
