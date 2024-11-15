@@ -13,6 +13,8 @@
   "statisticPeriod": "ALL",
   "taskType": "SH",
   "weight": "22",
+  "customFieldValues": {
+  },
   "processingCommand": {
     "script": "sleep 2\nuname -a\nid\nps -ef\n\necho okok\n\nif [ ${timesRestarted} -eq 1 ] ; then\nexit 5\nfi\nsleep 100\necho test тесть\n"
   },
