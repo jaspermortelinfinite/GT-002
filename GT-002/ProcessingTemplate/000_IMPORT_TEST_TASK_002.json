@@ -15,7 +15,7 @@
   "verificationDate": "2024-11-05T11:48:13.364",
   "weight": "22",
   "processingCommand": {
-    "script": "sleep 2\nuname -a\nid\nps -ef\n\necho okok\n\nif [ ${timesRestarted} -eq 1 ] ; then\nexit 5\nfi\nsleep 100\necho test тесть\n\necho test_GT-010 19_12_2024\n\necho test_GT-012"
+    "script": "sleep 2\nuname -a\nid\nps -ef\n\necho okok\n\nif [ ${timesRestarted} -eq 1 ] ; then\nexit 5\nfi\nsleep 100\necho test тесть\n\necho test_GT-010 19_12_2024\n\necho test_GT-012\n\necho test_GT-010 merge_conf"
   },
   "docs": {
     "documentation": "LINK:: http://192.168.7.10:8080/automatenow/#Jasper_Test/design-processing-edit/000_IMPORT_TEST_TASK_002"
