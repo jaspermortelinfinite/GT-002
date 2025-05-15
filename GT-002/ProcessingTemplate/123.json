@@ -15,7 +15,7 @@
   "customFieldValues": {
   },
   "processingCommand": {
-    "script": "\n\ncat /home/tomasz.gorzkowski/anow/log/TMG_PEOPLESOFT.agent.log\n\necho hello world\nsleep 1"
+    "script": "\n\ncat /home/tomasz.gorzkowski/anow/log/TMG_PEOPLESOFT.agent.log\n\necho 05/15/2025\n\necho hello world\nsleep 1\n"
   },
   "dependencies": 
   [
