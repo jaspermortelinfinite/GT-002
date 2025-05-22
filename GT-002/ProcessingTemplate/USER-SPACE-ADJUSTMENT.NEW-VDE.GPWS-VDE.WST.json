@@ -1,0 +1,180 @@
+{
+  "folder": "GPWS-VDE",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "MONTH",
+  "owner": "DAWIENER",
+  "passBy": true,
+  "preScript": ":INC WF-INIT.REQIT.INCL\n\n! Set default RqIT variables for case when processing of any container fails without being processed (i.e. access denied after service account password change, etc.)\n:PSET &ASSIGNMENT_GROUP# = \"GLOBAL-NGWS-VIRTUAL.DESKTOP\"\n:PSET &BUSINESS_SERVICE# = \"NGWS VIRTUAL DESKTOP ENHANCED\"\n:PSET &DESCRIPTION# = \"Unexpected error occured during automated user space setup. See external notes for further details\"\n:PSET &SHORT_DESCRIPTION# = \"GPWS-VDE: Automated NAS user space setup error\"\n:PSET &STATUS# = \"skipped\"",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "MOST_FREQUENT_VALUE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "GPWS-VDE"
+  ],
+  "useScripts": true,
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "RESOURCE",
+      "name": "Main.GPWS-VDE.stock",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "resource": "Main.GPWS-VDE.stock",
+      "resourcePermits": "1",
+      "resourceType": "STOCK",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "MONTH",
+      "name": "ADJUST-USER-SPACE.NEW-VDE.GPWS-VDE.JWIN",
+      "priority": "0",
+      "processingTemplate": "ADJUST-USER-SPACE.NEW-VDE.GPWS-VDE.JWIN",
+      "processingType": "TASK",
+      "serverNodeType": "WINDOWS",
+      "statisticMethod": "MOST_FREQUENT_VALUE",
+      "statisticPeriod": "MONTH",
+      "taskType": "AE_SHELL_SCRIPT",
+      "weight": "1",
+      "actions": 
+      [
+        {
+          "processingActionType": "PROCESSING_TEMPLATE_HOLD",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FAILED",
+          "processingCommand": {
+            "criteria": {
+              "processingTemplate": "EH-UPDATE-TICKET.REQIT.WIF"
+            },
+            "taskType": "PROCESSING_TEMPLATE_HOLD"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "NEW-USER-SPACE-ADJUTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+          "predecessor": "NEW-USER-SPACE-ADJUTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "INTERNAL",
+          "taskType": "AE_SCRIPT"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "MONTH",
+      "name": "STD-FEEDBACK.REQIT.WST",
+      "priority": "0",
+      "processingTemplate": "STD-FEEDBACK.REQIT.WST",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "MOST_FREQUENT_VALUE",
+      "statisticPeriod": "MONTH",
+      "title": "STD-FEEDBACK.REQIT.WST",
+      "weight": "1",
+      "workflowType": "STANDARD",
+      "actions": 
+      [
+        {
+          "processingActionType": "PROCESSING_TEMPLATE_HOLD",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FAILED",
+          "processingCommand": {
+            "criteria": {
+              "processingTemplate": "EH-UPDATE-TICKET.REQIT.WIF"
+            },
+            "taskType": "PROCESSING_TEMPLATE_HOLD"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "REMOVE-USER-SPACE-ADJUSTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+          "predecessor": "REMOVE-USER-SPACE-ADJUSTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "INTERNAL",
+          "taskType": "AE_SCRIPT"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "MONTH",
+      "name": "REMOVE-USER-SPACE-ADJUSTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+      "priority": "0",
+      "processingTemplate": "REMOVE-USER-SPACE-ADJUSTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "statisticMethod": "MOST_FREQUENT_VALUE",
+      "statisticPeriod": "MONTH",
+      "taskType": "AE_SCRIPT",
+      "weight": "1",
+      "actions": 
+      [
+        {
+          "processingActionType": "PROCESSING_TEMPLATE_HOLD",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FAILED",
+          "processingCommand": {
+            "criteria": {
+              "processingTemplate": "EH-UPDATE-TICKET.REQIT.WIF"
+            },
+            "taskType": "PROCESSING_TEMPLATE_HOLD"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "ADJUST-USER-SPACE.NEW-VDE.GPWS-VDE.JWIN",
+          "predecessor": "ADJUST-USER-SPACE.NEW-VDE.GPWS-VDE.JWIN",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "WINDOWS",
+          "taskType": "AE_SHELL_SCRIPT"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "MONTH",
+      "name": "NEW-USER-SPACE-ADJUTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+      "priority": "0",
+      "processingTemplate": "NEW-USER-SPACE-ADJUTMENT-REQUEST-DETAILS-VARA.NEW-VDE.GPWS-VDE.S",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "statisticMethod": "MOST_FREQUENT_VALUE",
+      "statisticPeriod": "MONTH",
+      "taskType": "AE_SCRIPT",
+      "weight": "1",
+      "actions": 
+      [
+        {
+          "processingActionType": "PROCESSING_TEMPLATE_HOLD",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FAILED",
+          "processingCommand": {
+            "criteria": {
+              "processingTemplate": "EH-UPDATE-TICKET.REQIT.WIF"
+            },
+            "taskType": "PROCESSING_TEMPLATE_HOLD"
+          }
+        }
+      ]
+    }
+  ]
+}
